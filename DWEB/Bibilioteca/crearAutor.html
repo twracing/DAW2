@@ -1,0 +1,26 @@
+<!-- 1) FORMULARIO DE CREACIÓN: generarHTMLCreacion() -->
+<form id="form-crear-autor" class="autor-form">
+  <h2>Crear Autor</h2>
+
+  <!-- autorid se genera en servidor/JS; aquí oculto -->
+  <input type="hidden" name="autorId" value="">
+
+  <!-- campo de texto para el nombre-->
+  <label for="nombre">Nombre</label>
+  <input id="nombre" name="nombre" type="text" required placeholder="Nombre del autor">
+    
+  
+  <label for="apellidos">Apellidos</label>
+  <input id="apellidos" name="apellidos" type="text" required placeholder="Apellidos del autor">
+
+
+  <!--Campo de texto para nacionalidad-->
+  <label for="nacionalidad">Nacionalidad</label>
+  <input id="nacionalidad" name="nacionalidad" type="text" required placeholder="País de origen">
+  <!--Campo de texto para biografia-->
+  <label for="biografia">Biografia</label>
+  <input id="biografia" name="biografia" type="text" required placeholder="biografia">
+
+  <button type="submit">Crear</button>
+  <button type="reset">Limpiar</button>
+</form>

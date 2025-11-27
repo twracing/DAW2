@@ -1,0 +1,7 @@
+function generarHTMLCreacion(){
+
+}
+
+function generarHTMLEdicion(){
+    
+}

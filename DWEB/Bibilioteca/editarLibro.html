@@ -1,0 +1,29 @@
+
+<form id="form-editar-libro" class="libro-form">
+  <h2>Editar libro</h2>
+
+  <input type="hidden" name="libroId" id="editar-libroId" value="123">
+
+  <label for="editar-titulo">Título</label>
+  <input id="editar-titulo" name="titulo" type="text" required value="Ejemplo de título">
+
+  <label for="editar-isbn">ISBN</label>
+  <input id="editar-isbn" name="isbn" type="text" required value="978-1-23456-789-0">
+
+  <label for="editar-autorId">Autor</label>
+  <select id="editar-autorId" name="autorId" required>
+    <option value="">--Selecciona autor--</option>
+   
+  </select>
+
+  <label for="editar-bibliotecaId">Biblioteca</label>
+  <select id="editar-bibliotecaId" name="bibliotecaId" required>
+    <option value="">--Selecciona biblioteca--</option>
+    
+  </select>
+
+  <div class="form-actions">
+    <button type="submit">Guardar cambios</button>
+    <button type="button" data-action="cancelar-edicion">Cancelar</button>
+  </div>
+</form>

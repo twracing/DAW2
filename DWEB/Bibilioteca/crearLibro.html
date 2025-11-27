@@ -1,0 +1,28 @@
+<!-- 1) FORMULARIO DE CREACIÓN: generarHTMLCreacion() -->
+<form id="form-crear-libro" class="libro-form">
+  <h2>Crear libro</h2>
+
+  <!-- libroId se genera en servidor/JS; aquí oculto -->
+  <input type="hidden" name="libroId" value="">
+
+  <label for="titulo">Título</label>
+  <input id="titulo" name="titulo" type="text" required placeholder="Título del libro">
+
+  <label for="isbn">ISBN</label>
+  <input id="isbn" name="isbn" type="text" required placeholder="ISBN">
+
+  <label for="autorId">Autor</label>
+  <select id="autorId" name="autorId" required>
+    <option value="">--Selecciona autor--</option>
+    <!-- Opciones dinámicas: <option value="1">Nombre Autor</option> -->
+  </select>
+
+  <label for="bibliotecaId">Biblioteca</label>
+  <select id="bibliotecaId" name="bibliotecaId" required>
+    <option value="">--Selecciona biblioteca--</option>
+    <!-- esto ahora esta vacio porque no hay datos y es estático -->
+  </select>
+
+  <button type="submit">Crear</button>
+  <button type="reset">Limpiar</button>
+</form>

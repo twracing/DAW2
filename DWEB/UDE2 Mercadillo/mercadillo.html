@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mercadillo - Gestión de Inventario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+      font-weight: bold;
+    }
+    input, select, button {
+      margin: 5px 0;
+      padding: 5px;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      padding: 8px 12px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #resultado {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛒 Mercadillo - Gestión de Inventario</h1>
+
+  <form id="formProducto">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" id="nombre">
+    </div>
+    <div>
+      <label>Cantidad:</label>
+      <input type="number" id="cantidad" step="1">
+    </div>
+    <div>
+      <label>Precio:</label>
+      <input type="number" id="precio" step="0.01">
+    </div>
+    <div>
+      <label>Categoría:</label>
+      <input type="text" id="categoria">
+    </div>
+
+    <button type="button" id="btnAgregar">Agregar</button>
+    <button type="button" id="btnEliminar">Eliminar</button>
+    <button type="button" id="btnBuscar">Buscar</button>
+    <button type="button" id="btnActualizar">Actualizar stock</button>
+    <button type="button" id="btnOrdenar">Ordenar por precio</button>
+    <button type="button" id="btnFiltrar">Filtrar categoría</button>
+    <button type="button" id="btnImprimir">Imprimir inventario</button>
+  </form>
+
+  <div id="resultado">
+    <h3>Resultados:</h3>
+    <div id="salida"></div>
+  </div>
+
+  <script>
+    // ==============================
+    //   FUNCIONES DE INVENTARIO
+    // ==============================
+    const inventario = [];
+    inventario["boligrafo"] = { cantidad: 4, precio: 1.5, categoria: "escolar" };
+
+    function agregarProducto(nombre, cantidad, precio, categoria) {
+      if (inventario[nombre]) {
+        alert("El producto " + nombre + " ya existe");
+        return;
+      }
+      inventario[nombre] = {
+        cantidad: Number(cantidad),
+        precio: Number(precio),
+        categoria
+      };
+      alert("Producto agregado correctamente");
+    }
+
+    function eliminarProducto(nombre) {
+      if (!inventario[nombre]) {
+        alert("No existe ese producto");
+        return;
+      }
+      if (confirm("¿Seguro que deseas eliminar '" + nombre + "'?")) {
+        delete inventario[nombre];
+        alert("Producto eliminado");
+      }
+    }
+
+    function buscarProducto(nombre) {
+      return inventario[nombre] || null;
+    }
+
+    function actualizarInventario(nombre, cantidad) {
+      if (!inventario[nombre]) {
+        alert("El producto '" + nombre + "' no existe.");
+        return;
+      }
+      inventario[nombre].cantidad += Number(cantidad);
+      if (inventario[nombre].cantidad <= 0) {
+        inventario[nombre].cantidad = 0;
+        alert("¡Stock agotado! Se necesita reposición de '" + nombre + "'.");
+      }
+      alert("Inventario actualizado");
+    }
+
+    function ordenarProductosPorPrecio() {
+      return Object.entries(inventario)
+        .filter(([_, datos]) => typeof datos === "object")
+        .sort((a, b) => a[1].precio - b[1].precio)
+        .map(([nombre, datos]) => ({
+          nombre,
+          cantidad: datos.cantidad,
+          precio: datos.precio,
+          categoria: datos.categoria
+        }));
+    }
+
+    function imprimirInventario() {
+      return Object.entries(inventario)
+        .filter(([_, datos]) => typeof datos === "object")
+        .map(([nombre, datos]) => ({
+          nombre,
+          categoria: datos.categoria,
+          cantidad: datos.cantidad,
+          precio: datos.precio,
+          total: (datos.cantidad * datos.precio).toFixed(2)
+        }));
+    }
+
+    function filtrarProductosPorCategoria(categoria) {
+      return Object.entries(inventario)
+        .filter(([_, datos]) => datos.categoria === categoria)
+        .map(([nombre, datos]) => ({
+          nombre,
+          cantidad: datos.cantidad,
+          precio: datos.precio
+        }));
+    }
+
+    // ==============================
+    //   INTERFAZ / EVENTOS HTML
+    // ==============================
+    window.addEventListener("load", () => {
+      const salida = document.getElementById("salida");
+
+      document.getElementById("btnAgregar").addEventListener("click", () => {
+        agregarProducto(
+          nombre.value,
+          cantidad.value,
+          precio.value,
+          categoria.value
+        );
+      });
+
+      document.getElementById("btnEliminar").addEventListener("click", () => {
+        eliminarProducto(nombre.value);
+      });
+
+      document.getElementById("btnBuscar").addEventListener("click", () => {
+        const prod = buscarProducto(nombre.value);
+        salida.innerHTML = prod
+          ? JSON.stringify(prod, null, 2)
+          : "Producto no encontrado.";
+      });
+
+      document.getElementById("btnActualizar").addEventListener("click", () => {
+        actualizarInventario(nombre.value, cantidad.value);
+      });
+
+      document.getElementById("btnOrdenar").addEventListener("click", () => {
+        mostrarTabla(ordenarProductosPorPrecio());
+      });
+
+      document.getElementById("btnFiltrar").addEventListener("click", () => {
+        mostrarTabla(filtrarProductosPorCategoria(categoria.value));
+      });
+
+      document.getElementById("btnImprimir").addEventListener("click", () => {
+        mostrarTabla(imprimirInventario());
+      });
+
+      function mostrarTabla(lista) {
+        if (!lista || lista.length === 0) {
+          salida.innerHTML = "<p>No hay datos para mostrar.</p>";
+          return;
+        }
+        let html = "<table><tr>";
+        for (let key of Object.keys(lista[0])) html += `<th>${key}</th>`;
+        html += "</tr>";
+        for (let item of lista) {
+          html += "<tr>";
+          for (let key in item) html += `<td>${item[key]}</td>`;
+          html += "</tr>";
+        }
+        html += "</table>";
+        salida.innerHTML = html;
+      }
+    });
+  </script>
+</body>
+</html>
