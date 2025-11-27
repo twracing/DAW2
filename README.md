@@ -42,19 +42,19 @@ Este repositorio recopila mis mejores prácticas, proyectos y experimentos desar
 
 ### 🕹️ Proyecto 1 – Aplicación Web
 <p align="center">
-  <img src="https://media.giphy.com/media/xTiTnuhyBF54B852nK/giphy.gif" width="500"/>
+  <img src="" width="500"/>
 </p>
 
-Un proyecto donde aplico arquitectura MVC, CRUDs completos y diseño responsive.
+
 
 ---
 
 ### 📱 Proyecto 2 – App Java con interfaz
 <p align="center">
-  <img src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" width="500"/>
+  <img src="" width="500"/>
 </p>
 
-Aplicación de escritorio donde exploro Java, programación orientada a objetos y gestión de datos.
+
 
 ---
 
@@ -80,9 +80,8 @@ Me encanta trabajar en equipo, compartir ideas y recibir feedback para mejorar c
 
 Si te interesa conocer más de mi trabajo o colaborar conmigo:
 
-- 💼 **LinkedIn:** _[tu enlace aquí]_  
-- 📧 **Email:** _[tu correo aquí]_  
-
+- 💼 **LinkedIn:** _https://es.linkedin.com/in/dario-briongos-garcia-058b17273?trk=people-guest_people_search-card_  
+- 📧 **Email:** _dariiobriongosgarcia@gmail.com_
 ---
 
 ## ⭐ Si te gusta mi trabajo…
