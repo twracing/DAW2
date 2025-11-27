@@ -1,6 +1,6 @@
 <!-- Portada animada -->
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzZ2Njh2cW5oM2t3bGxjbzM1NmN2bXdxdHA2YzV2dHBpMG0yYWVnYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHqthx9UAvWDK/giphy.gif" width="600" />
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJ1bXczMGZleGhzdXp2c3hidXFzNWhhcmtsczNiNmdrZzR0cDd1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHBGehJ3FSZEygszX3/giphy.gif" width="600" />
 </p>
 
 <h1 align="center">🚀 Portafolio DAW2 – Dario Briongos</h1>
@@ -38,7 +38,7 @@ Este repositorio recopila mis mejores prácticas, proyectos y experimentos desar
 
 ## 🔥 Proyectos destacados
 
-> *(Puedes enlazar tus futuros proyectos cuando los subas al repo)*
+
 
 ### 🕹️ Proyecto 1 – Aplicación Web
 <p align="center">
