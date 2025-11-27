@@ -1,6 +1,6 @@
 <!-- Portada animada -->
 <p align="center">
-  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJ1bXczMGZleGhzdXp2c3hidXFzNWhhcmtsczNiNmdrZzR0cDd1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHBGehJ3FSZEygszX3/giphy.gif" width="600" />
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJ1bXczMGZleGhzdXp2c3hidXFzNWhhcmtsczNiNmdrZzR0cDd1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHBGehJ3FSZEygszX3/giphy.gif" width="200" />
 </p>
 
 <h1 align="center">🚀 Portafolio DAW2 – Dario Briongos</h1>
