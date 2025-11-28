@@ -1,0 +1,13 @@
+Grupo 2 Pablo, Jino, Alvaro
+GestorPlus
+fundad hace 40 años, Laura propone innovación, servicios que hay que digitalizar en la nube: áreas y servicios de una gestoria.
+pagos online, webs, videollamadas... Tipo de sistema: SaaS, Aalmacenamiento cloud y APis. Ventajas Economicas: reducción del espacio físico, ahorro en materiales y menores costes de infraestructura. Problemas: Pagos en las cuotas mensuales de servicios, Dependen de proveedores externos  y los Costes iniciales de migración. Beneficios para empleados: teletrabajo ahorra desplazamiento, acceso a documentación, mayor productividad, maejor equilibrio. Impacto medioambiental positvivo: eliminación de papel, reducción de desplazamientos, centros de datos eficientes. Comparativa de proveedores: Microsoft azure: Maquinas virtuales, almacenamiento seguro y servicios virtuales. Google Cloud: Servicios de almacenamiento, workespace de Google, bases de datos cloud sql. IBM Cloud: Se basa en la Inteligencia artifical, infraestructura basa en contenedores, proveedor mas seguro. Recomiendan Azure ya que la transición es sencilla, tiene herramientas facmiliraes y buena seguridad.
+
+
+Grupo 3 Raul, Dani, Pablo Nuñez
+
+Ventajas ahorro en licencisa, mejor inversión. Análisis Empleados: Ventajas: conciliación laboral real, contratación sin barreras geográficas y modelo Hibrido(presencial + remoto) 
+Medioambiente: reducción de uso de papel, menos desplazamientos y ahorro energético
+Solución 1: Microsoft Azure- IA, bases de datos, maquinas virtuales...
+Solución 2: Google Cloud- Google Workspace, Accesibilidad, Simplicidad.
+Solución 3: IBM Cloud- Seguridad critica, servidores virutales, Hibrido (integración de sistemas)
