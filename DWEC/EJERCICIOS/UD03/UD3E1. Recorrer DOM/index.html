@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorrer estructura del DOM</title>
+ <style>
+    /* Solo para ver estructura en pantalla si quieres */
+    .box { padding: 6px; border: 1px solid #ccc; margin: 6px; }
+    .col { display: inline-block; vertical-align: top; width: 48%; }
+  </style>
+</head>
+<body>
+  <main id="app" class="box principal" data-entorno="dev">
+    <section id="contenedor-izq" class="box seccion" data-region="north">
+      <article id="articulo1" class="box articulo destacado" data-tipo="noticia">
+        <header class="box cabecera">
+          <h1 class="titulo">Título noticia A</h1>
+          <p class="resumen">Resumen del artículo A</p>
+        </header>
+        <div class="box contenido">
+          <p>Contenido del artículo A</p>
+          <ul class="lista">
+            <li class="item">Punto A1</li>
+            <li class="item">Punto A2</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="articulo2" class="box articulo" data-tipo="nota">
+        <h1 class="titulo">Título noticia B</h1>
+        <p>Contenido del artículo B</p>
+      </article>
+    </section>
+
+    <section id="contenedor-der" class="box seccion col" data-region="south">
+      <aside class="box sidebar" data-pos="right">
+        <div class="widget box" data-id="w1">
+          <h2>Widget 1</h2>
+          <p class="desc">Texto del widget</p>
+        </div>
+        <div class="widget box" data-id="w2">
+          <h2>Widget 2</h2>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- IIFE y funciones -->
+  <script>
+  const DOMInspector = (function() {
+    function recorrerNodo(nodo) {
+      return {
+        etiqueta: nodo.tagName.toLowerCase(),
+        texto: nodo.textContent.trim(),
+        tieneId: !!nodo.id,
+        listClass: Array.from(nodo.classList),
+        listData: { ...nodo.dataset },
+        listHijos: Array.from(nodo.children).map(recorrerNodo)
+      };
+    }
+
+    function obtenerEstructuraJSON() {
+      return recorrerNodo(document.body);
+    }
+
+    function imprimirEstructura(selector) {
+      const nodo = document.querySelector(selector);
+      if (!nodo) {
+        console.log("Nodo no encontrado para el selector:", selector);
+        return;
+      }
+
+      const camino = [];
+      let actual = nodo;
+
+      while (actual) {
+        const etiqueta = actual.tagName ? actual.tagName.toLowerCase() : "document";
+        const id = actual.id || "noid";
+        const clases = actual.classList && actual.classList.length > 0
+          ? Array.from(actual.classList).join(",")
+          : "noclass";
+        const texto = (actual.textContent && actual.textContent.trim()) || "notext";
+
+        camino.unshift(`${etiqueta}-${id}-${clases}-${texto}`);
+        actual = actual.parentNode;
+      }
+
+      console.log(camino.join(" -> "));
+    }
+
+    return {
+      obtenerEstructuraJSON,
+      imprimirEstructura
+    };
+  })();
+  </script>
+
+  <!-- Pruebas rápidas en consola -->
+  <script>
+    // 1) Estructura completa desde <body>
+    const json = DOMInspector.obtenerEstructuraJSON();
+    console.log("Estructura JSON del DOM:", json);
+
+    // 2) Ruta hasta distintos nodos
+    DOMInspector.imprimirEstructura("#articulo1 .contenido .lista .item");
+    DOMInspector.imprimirEstructura("#articulo2 .titulo");
+    DOMInspector.imprimirEstructura(".sidebar .widget[data-id='w2']");
+  </script>
+</body>
+</html>

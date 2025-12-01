@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="tabla.js"></script>
+    <title>UD3E4 Formato tablas</title>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const alumnos = [
+      { nombre: "Ana López", dni: "12345678A", curso: "2º Desarrollo Web", asignaturas: ["HTML","CSS","JavaScript","React"], telefono: "600123456", email: "ana.lopez@example.com" },
+      { nombre: "Carlos Martínez", dni: "23456789B", curso: "1º Administración de Sistemas", asignaturas: ["Linux","Redes","Hardware"], telefono: "650987654", email: "carlos.martinez@example.com" },
+      { nombre: "Laura Sánchez", dni: "34567890C", curso: "3º Diseño Gráfico", asignaturas: ["Photoshop","Illustrator","UX Design"], telefono: "620111222", email: "laura.sanchez@example.com" },
+      { nombre: "Mario Gómez", dni: "45678901D", curso: "1º Inteligencia Artificial", asignaturas: ["Python","Machine Learning","Data Science"], telefono: "670555444", email: "mario.gomez@example.com" }
+    ];
+
+    const style = document.createElement('style');
+    style.textContent = `
+      :root { font-family: system-ui, sans-serif; }
+      .header { display:flex; gap:8px; align-items:center; margin:16px; }
+      .btn { padding:6px 10px; border:1px solid #ccc; border-radius:6px; 
+      cursor:pointer; background:#fff; }
+      .btn.active { background:#2b6cb0; color:#fff; border-color:#2b6cb0; }
+      .container { margin:0 16px 24px; }
+      /* Tabla */
+      table { width:100%; border-collapse:collapse; }
+      thead { background:#f3f4f6; }
+      th, td { padding:10px; border-bottom:1px solid #e5e7eb; text-align:left; }
+      tr.hover { background:#fef3c7; }
+      tr.selected { background:#fde68a; outline:2px solid #f59e0b; }
+      .truncate { max-width:260px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      /* Fichas */
+      .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+      .card { border:1px solid #e5e7eb; border-radius:10px; padding:12px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.06); }
+      .card.hover { box-shadow:0 4px 10px rgba(0,0,0,.12); border-color:#cbd5e1; }
+      .card.selected { border-color:#2563eb; box-shadow:0 0 0 3px rgba(37,99,235,.2); }
+      .title { font-weight:600; color:#111827; margin-bottom:6px; }
+      .meta { color:#374151; margin:2px 0; }
+      .list { margin:6px 0 0 16px; color:#4b5563; }
+    `;
+    document.head.appendChild(style);
+
+    const app = document.createElement('div');
+    const header = document.createElement('div');
+    const container = document.createElement('div');
+    header.className = 'header';
+    container.className = 'container';
+    app.appendChild(header);
+    app.appendChild(container);
+    document.body.appendChild(app);
+
+    const btnDetalles = document.createElement('button');
+    const btnFicha = document.createElement('button');
+    btnDetalles.className = 'btn active';
+    btnFicha.className = 'btn';
+    btnDetalles.textContent = 'Detalles';
+    btnFicha.textContent = 'Ficha';
+    header.append(btnDetalles, btnFicha);
+
+    let selectedEl = null;
+    const setSelected = (el) => {
+      if (selectedEl && selectedEl !== el) selectedEl.classList.remove('selected');
+      selectedEl = el;
+      el.classList.add('selected');
+    };
+
+    const truncate = (t, n) => t.length > n ? t.slice(0, n - 1) + '…' : t;
+
+    const makeCell = (text, max, truncatable = false) => {
+      const td = document.createElement('td');
+      if (truncatable) {
+        td.className = 'truncate';
+        td.dataset.full = text;
+        td.textContent = truncate(text, max);
+      } else {
+        td.textContent = text;
+      }
+      return td;
+    };
+
+    const onRowEnter = (row) => {
+      row.classList.add('hover');
+      for (const td of row.querySelectorAll('.truncate')) td.textContent = td.dataset.full;
+    };
+    const onRowLeave = (row) => {
+      row.classList.remove('hover');
+      const [cursoTd, emailTd] = row.querySelectorAll('.truncate');
+      if (cursoTd) cursoTd.textContent = truncate(cursoTd.dataset.full, 22);
+      if (emailTd) emailTd.textContent = truncate(emailTd.dataset.full, 24);
+    };
+
+    const buildTabla = () => {
+      container.textContent = '';
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const trh = document.createElement('tr');
+      ['Nombre', 'Curso', 'Teléfono', 'Email'].forEach(h => {
+        const th = document.createElement('th'); th.textContent = h; trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+      const tbody = document.createElement('tbody');
+
+      alumnos.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.appendChild(makeCell(a.nombre, 0));
+        tr.appendChild(makeCell(a.curso, 22, true));
+        tr.appendChild(makeCell(a.telefono, 0));
+        tr.appendChild(makeCell(a.email, 24, true));
+
+        tr.addEventListener('mouseenter', () => onRowEnter(tr));
+        tr.addEventListener('mouseleave', () => onRowLeave(tr));
+        tr.addEventListener('click', () => setSelected(tr));
+        tbody.appendChild(tr);
+      });
+
+      table.append(thead, tbody);
+      container.appendChild(table);
+    };
+
+    const buildFichas = () => {
+      container.textContent = '';
+      const cards = document.createElement('div');
+      cards.className = 'cards';
+
+      alumnos.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = a.nombre;
+
+        const dni = document.createElement('div'); dni.className = 'meta'; dni.textContent = `DNI: ${a.dni}`;
+        const curso = document.createElement('div'); curso.className = 'meta'; curso.textContent = `Curso: ${a.curso}`;
+        const ul = document.createElement('ul'); ul.className = 'list';
+        a.asignaturas.forEach(s => { const li = document.createElement('li'); li.textContent = s; ul.appendChild(li); });
+        const tel = document.createElement('div'); tel.className = 'meta'; tel.textContent = `Teléfono: ${a.telefono}`;
+        const mail = document.createElement('div'); mail.className = 'meta'; mail.textContent = `Email: ${a.email}`;
+
+        card.append(title, dni, curso, ul, tel, mail);
+
+        card.addEventListener('mouseenter', () => card.classList.add('hover'));
+        card.addEventListener('mouseleave', () => card.classList.remove('hover'));
+        card.addEventListener('click', () => setSelected(card));
+
+        cards.appendChild(card);
+      });
+
+      container.appendChild(cards);
+    };
+
+    const setMode = (mode) => {
+      btnDetalles.classList.toggle('active', mode === 'detalles');
+      btnFicha.classList.toggle('active', mode === 'ficha');
+      selectedEl = null;
+      mode === 'detalles' ? buildTabla() : buildFichas();
+    };
+
+    btnDetalles.addEventListener('click', () => setMode('detalles'));
+    btnFicha.addEventListener('click', () => setMode('ficha'));
+
+    setMode('detalles');
+  });
+  </script>
+</head>
+<body></body>
+</html>
