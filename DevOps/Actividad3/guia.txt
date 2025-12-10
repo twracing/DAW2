@@ -1,0 +1,3 @@
+Docker compose | crear imagen
+Docker compose up | desplegar imagen | Docker compose down para terminar servicio 
+otra consola para Docker compose run -rm app | ejecutar aplicacion
