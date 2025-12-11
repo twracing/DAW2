@@ -1,30 +1,53 @@
-<?php
-namespace App\Clases;
+<?php 
+declare(strict_types=1);
+ 
+namespace App;
+ 
 use PDO;
 use PDOException;
-class ConexionBD {
-// Variable estática para guardar la conexión única
-private static $instancia = null;
-// El constructor es privado para que nadie pueda hacer "new ConexionBD()" desde fuera
-private function __construct() {}
-
-public static function getConexion(): PDO {
-// Si la instancia es null, significa que es la primera vez. Creamos la conexión.
-if (self::$instancia === null) {
-try{
-$opciones = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-// Aquí se crea la conexión REAL
-self::$instancia = new
-PDO('mysql:host=localhost;dbname=dwes_01_nba;charset=utf8', 'root', '',
-$opciones);
-
-    return self::$instancia;
-    } catch (PDOException $e){
-    die("Error de conexión a la base de datos: " . $e->getMessage());
+use Dotenv\Dotenv;
+ 
+final class ConexionBD
+{
+    private static ?PDO $instancia = null;
+ 
+    private function __construct() {}
+    private function __clone() {}
+ 
+    public static function getConexion(): PDO
+    {
+        if (self::$instancia instanceof PDO) {
+            return self::$instancia;
+        }
+ 
+        $dotenv = Dotenv::createImmutable(dirname(__DIR__));
+        $dotenv->load();
+ 
+        $dsn  = $_ENV['BD_DSN']      ?? '';
+        $user = $_ENV['BD_USERNAME'] ?? '';
+        $pass = $_ENV['BD_PASSWORD'] ?? '';
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
+        ];
+ 
+        try {
+            self::$instancia = new PDO($dsn, $user, $pass, $options);
+            return self::$instancia;
+        } catch (PDOException $e) {
+            // Manejo limpio según código MySQL
+            $msg = match ($e->getCode()) {
+                1049 => 'Base de datos no encontrada',
+                1045 => 'Acceso denegado',
+                2002 => 'Conexión rechazada',
+                default => 'Error desconocido',
+            };
+            throw new PDOException($msg . ' (' . $e->getMessage() . ')', (int)$e->getCode());
+        }
+    }
 }
-}
-// Si ya existía, simplemente la devolvemos sin conectar de nuevo
-return self::$instancia;
-}
-}
+ 
+ 
 ?>
