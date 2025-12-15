@@ -11,3 +11,5 @@ Medioambiente: reducci처n de uso de papel, menos desplazamientos y ahorro energ�
 Soluci처n 1: Microsoft Azure- IA, bases de datos, maquinas virtuales...
 Soluci처n 2: Google Cloud- Google Workspace, Accesibilidad, Simplicidad.
 Soluci처n 3: IBM Cloud- Seguridad critica, servidores virutales, Hibrido (integraci처n de sistemas)
+
+Grupo 4 Pablo Acero, Sergio Lopez
