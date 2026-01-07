@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario Completo</title>
+  </head>
+  <body>
+    <h1>BIENVENIDO</h1>
+    <p>A este sitio web de prueba de formularios</p>
+
+    <h2>Alta de nuevo Alumno:</h2>
+
+    <form>
+      <!-- Nombre -->
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Introduce tu nombre"
+        required
+      />
+      <br /><br />
+
+      <!-- Apellidos -->
+      <label for="apellidos">Apellidos:</label>
+      <input
+        type="text"
+        id="apellidos"
+        name="apellidos"
+        placeholder="Introduce tus apellidos"
+        required
+      />
+      <br /><br />
+
+      <!-- Sexo -->
+      <p>Sexo:</p>
+      <label>
+        <input type="radio" name="sexo" value="masculino" /> Masculino
+      </label>
+      <label>
+        <input type="radio" name="sexo" value="femenino" checked /> Femenino
+      </label>
+      <br /><br />
+
+      <!-- Instituto -->
+      <label for="instituto">Instituto:</label>
+      <select id="instituto" name="instituto">
+        <option value="">Selecciona:</option>
+        <option value="bernaldo" selected>
+          IES Bernaldo de Quirós (Mieres)
+        </option>
+        <option value="miguel">IES Miguel Herrero</option>
+        <option value="otros">Otro</option>
+      </select>
+      <br /><br />
+
+      <!-- Ciclos -->
+      <p>Ciclos a matricular:</p>
+      <label> <input type="checkbox" name="ciclo_daw" checked /> DAW </label>
+      <label> <input type="checkbox" name="ciclo_asir" /> ASIR </label>
+      <br /><br />
+
+      <!-- Email -->
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" />
+      <br /><br />
+
+      <!-- Teléfono -->
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" />
+      <br /><br />
+
+      <!-- Fecha de nacimiento -->
+      <label for="fecha">Fecha de nacimiento:</label>
+      <input type="date" id="fecha" name="fecha" />
+      <br /><br />
+
+      <!-- Número -->
+      <label for="numero">Número favorito:</label>
+      <input type="number" id="numero" name="numero" min="1" max="100" />
+      <br /><br />
+
+      <!-- Rango -->
+      <label for="rango">Nivel de satisfacción:</label>
+      <input type="range" id="rango" name="rango" min="0" max="10" />
+      <br /><br />
+
+      <!-- Color -->
+      <label for="color">Color favorito:</label>
+      <input type="color" id="color" name="color" />
+      <br /><br />
+
+      <!-- URL -->
+      <label for="web">Página web personal:</label>
+      <input type="url" id="web" name="web" />
+      <br /><br />
+
+      <!-- Archivo -->
+      <label for="dni">Adjunta el fichero con el DNI:</label>
+      <input type="file" id="dni" name="dni" />
+      <br /><br />
+
+      <!-- Contraseña -->
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" />
+      <br /><br />
+
+      <!-- Botones -->
+      <button type="submit">Guardar alumno</button>
+      <button type="reset">Limpiar</button>
+    </form>
+  </body>
+</html>
