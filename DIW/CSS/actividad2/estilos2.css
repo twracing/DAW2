@@ -1,0 +1,24 @@
+body {
+  font-family: Arial, sans-serif; /* Usa la fuente Arial o una similar */
+  width: 80%; /* El contenido ocupa el 80% del ancho de la pantalla */
+  margin: 40px auto; /* 40px arriba/abajo y centrado horizontalmente */
+}
+
+/* Estilos del título */
+h1 {
+  border: 3px solid blue; /* Borde azul de 3px alrededor del título */
+  padding: 15px; /* Espacio interno de 15px dentro del título */
+  text-align: left; /* Centra el texto del título */
+}
+
+/* Estilos del párrafo */
+p {
+  border: 2px dashed red; /* Borde rojo con líneas discontinuas */
+  padding: 20px; /* Espacio interno de 20px */
+  color: green; /* Texto en color verde */
+  line-height: 1.6; /* Espaciado entre líneas */
+  background-color: #fff; /* Fondo blanco */
+  width: 60%; /* El párrafo ocupa el 60% del ancho */
+  margin-left: auto; /* Empuja el párrafo hacia la derecha */
+  margin-right: 0; /* Lo alinea completamente a la derecha */
+}

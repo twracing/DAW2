@@ -1,0 +1,26 @@
+/* Aplica borde azul, padding y margin-top a todos los elementos */
+* {
+  border: 1px solid blue; /* Borde azul para todos los elementos */
+  padding: 10px; /* Espacio interno */
+  margin-top: 10px; /* Espacio superior */
+  box-sizing: border-box; /* Incluye borde y padding en el tamaño total */
+  font-family: Arial, sans-serif;
+}
+
+/* ¿Se aplica el modelo de cajas en los elementos form? → Sí, todos los elementos HTML usan el modelo de cajas */
+
+/* Estilo para <em> */
+em {
+  color: red; /* Texto en rojo */
+  font-style: italic; /* Cursiva */
+}
+
+/* Estilo para <a> */
+a {
+  color: green; /* Texto en verde */
+  text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+  text-decoration: underline; /* Subrayado al pasar el ratón */
+}
