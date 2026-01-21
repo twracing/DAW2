@@ -1,0 +1,31 @@
+/* Más altura para la fila */
+.fila-grande {
+  padding: 40px 0; /* aumenta la altura */
+}
+
+/* Colores de las columnas */
+.columna-cyan {
+  background-color: cyan;
+}
+
+.columna-olive {
+  background-color: olive;
+  color: white;
+}
+
+.columna-purple {
+  background-color: purple;
+  color: white;
+}
+
+/* Opcional: centrar texto vertical y horizontalmente */
+.columna-cyan,
+.columna-olive,
+.columna-purple {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* puedes ajustarlo */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
